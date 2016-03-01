@@ -1,14 +1,13 @@
 #ifndef IMAGEPROCESSING_HH
 #define IMAGEPROCESSING_HH
 
-#include "opencv2/core/core.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 
-using uint = unsigned;
+#include "settings.hh"
+
 namespace ImageProcessing
 {
-bool ResizeImage(cv::Mat& img, const uint& width, const uint& height);
-
-
+inline void ResizeImage(const cv::Mat& in, cv::Mat& out);
 }
 
 
