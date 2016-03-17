@@ -1,8 +1,14 @@
 #include "imageprocessing.hh"
 
+#include "settings.hh"
 
 
-void ImageProcessing::ResizeImage(const cv::Mat& in, cv::Mat& out)
+void ImageProcessing::ResizeImage(cv::Mat& img)
 {
-	cv::resize(in, out, Settings::new_size);
+	cv::resize(img.clone(), img, cv::Size(720,576));
+}
+
+void ImageProcessing::ToGrayScale(cv::Mat& img)
+{
+	cv::cvtColor(img,img,cv::COLOR_BGR2GRAY);
 }

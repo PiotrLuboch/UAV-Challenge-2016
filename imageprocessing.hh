@@ -3,11 +3,11 @@
 
 #include "opencv2/imgproc/imgproc.hpp"
 
-#include "settings.hh"
 
 namespace ImageProcessing
 {
-inline void ResizeImage(const cv::Mat& in, cv::Mat& out);
+void ToGrayScale(cv::Mat& img);
+void ResizeImage(cv::Mat& img);
 }
 
 
