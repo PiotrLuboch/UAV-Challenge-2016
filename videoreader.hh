@@ -11,6 +11,7 @@ class VideoReader
 	cv::VideoCapture video;
 public:
 	VideoReader(const std::string& file);
+	~VideoReader();
 	bool Open(const std::string& file);
 	bool Open(const int& device_number);
 	bool IsOpeened();

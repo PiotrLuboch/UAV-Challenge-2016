@@ -3,34 +3,41 @@
 #include "haarcascadeclasifier.hh"
 #include "imageprocessing.hh"
 #include "settings.hh"
+#include "exit_codes.hh"
 
 using namespace std;
 
-int main()
+int main(int argc, char** argv)
 {
-	VideoReader reader("/home/piotr/Programy/UAV_Challenge/video/GOPR1802.MP4");
+	if (argc != 3)
+		return ERROR_NOT_ENOUGH_PARAMETERS;
 
-	HaarCascadeClasifier classifier("/home/piotr/Programy/UAV_Challenge/data/cascade.xml");
-	//VideoReader reader("/home/piotr/Wideo/GOPR0100.MP4");
-	//HaarCascadeClasifier classifier("/home/piotr/Dokumenty/gopro100.xml");
+	string video_file_name = string(argv[1]);
+	string classifier_file_name = string(argv[2]);
+	VideoReader reader(video_file_name);
+	HaarCascadeClasifier classifier(classifier_file_name);
+
 	cv::Mat frame;
 	int is_exit = 'n';
-	if(reader.IsOpeened())
+
+	if (reader.IsOpeened())
 	{
-		while(!(is_exit=='q'))
+		while (!(is_exit == 'q'))
 		{
 			reader.GetFrame(frame);
-			if(!frame.empty())
+			if (!frame.empty())
 			{
-				ImageProcessing::ToGrayScale(frame);
 				ImageProcessing::ResizeImage(frame);
+				ImageProcessing::ToGrayScale(frame);
 				classifier.Classify(frame);
-				cv::imshow("frame",frame);
+				cv::imshow("window", frame);
 			}
 			is_exit = cv::waitKey(40);
 		}
 		reader.Close();
 		frame.release();
 	}
+
+	return EXIT_OK;
 }
 

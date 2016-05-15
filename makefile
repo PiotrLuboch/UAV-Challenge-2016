@@ -1,6 +1,6 @@
 CXX=g++
-CXXFLAGS=`pkg-config --cflags opencv` -g -Wall -pedantic -std=c++11
-LXXFLAGS=`pkg-config --libs opencv`
+CXXFLAGS=-pthread `pkg-config --cflags opencv` -g -Wall -pedantic -std=c++11
+LXXFLAGS=-pthread `pkg-config --libs opencv` -std=c++11
 OBJS=videoreader.o imageprocessing.o haarcascadeclasifier.o main.o
 
 all: uav_raspberry
@@ -13,4 +13,4 @@ $(OBJS): %.o: %.cpp
 	$(CXX) -c $(CXXFLAGS) $< -o $@
 	
 clean:
-	rm -f $(OBJS) 
+	rm -f $(OBJS) uav_raspberry

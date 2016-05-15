@@ -7,6 +7,7 @@
 namespace ImageProcessing
 {
 void ToGrayScale(cv::Mat& img);
+//cv::Mat& GetChannel(char channel, cv::Mat& img);
 void ResizeImage(cv::Mat& img);
 }
 

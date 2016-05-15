@@ -5,6 +5,10 @@ VideoReader::VideoReader(const std::string& file):
 {
 }
 
+VideoReader::~VideoReader(){
+	Close();
+}
+
 bool VideoReader::Open(const std::string &file)
 {
 	if(IsOpeened())
